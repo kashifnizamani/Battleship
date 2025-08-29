@@ -1,5 +1,4 @@
 
-import { experiments } from "webpack";
 import { Gameboard } from "../Gameboard";
 import { Ship } from "../Ship";
 
@@ -59,4 +58,33 @@ describe("Gameboard tests", () =>{
 
 
 
+describe("Gameboard allSunk()", () => {
+  let board;
+  let ship1;
+  let ship2;
 
+  beforeEach(() => {
+    board = new Gameboard();
+    ship1 = new Ship(2); 
+    ship2 = new Ship(3); 
+    board.ships = [ship1, ship2]; 
+  });
+
+  test("returns false when at least one ship is not sunk", () => {
+    ship1.hit(); 
+    expect(board.allSunk()).toBe(false);
+  });
+
+  test("returns true when all ships are sunk", () => {
+    
+    ship1.hit();
+    ship1.hit();
+
+   
+    ship2.hit();
+    ship2.hit();
+    ship2.hit();
+
+    expect(board.allSunk()).toBe(true);
+  });
+});

@@ -4,6 +4,7 @@ export class Gameboard {
   cols = 10;
   rows = 10;
   grid = [];
+  ships = [];
 
   constructor() {
     for (let i = 0; i < this.rows; i++) {
@@ -22,7 +23,7 @@ export class Gameboard {
             for (let i = 0; i < ship.length; i++) {
              this.grid[startY][startX + i] = ship;
             }
-
+            this.ships.push(ship)
             return this.grid;
         }
         else if(orientation === "vertical"){
@@ -30,6 +31,7 @@ export class Gameboard {
             for (let i = 0; i < ship.length; i++) {
               this.grid[startY + i][startX] = ship;
          }
+           this.ships.push(ship)
            return this.grid
         }
     }
@@ -71,5 +73,14 @@ export class Gameboard {
   }
 
   }
+
+allSunk() {
+  for (const ship of this.ships) {
+    if (!ship.isSunk()) {
+      return false;
+    }
+  }
+  return true;
+}
 
 }
