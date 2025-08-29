@@ -58,4 +58,18 @@ export class Gameboard {
       return false;
     }
   }
+
+  receiveAttack(x, y){
+
+     const target = this.grid[y][x];
+  if (target) {
+    target.hit();  
+    return true;   
+  } else {
+    this.grid[y][x] = "miss"; 
+    return false;
+  }
+
+  }
+
 }

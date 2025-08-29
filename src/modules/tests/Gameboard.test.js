@@ -1,4 +1,5 @@
 
+import { experiments } from "webpack";
 import { Gameboard } from "../Gameboard";
 import { Ship } from "../Ship";
 
@@ -39,9 +40,23 @@ describe("Gameboard tests", () =>{
   expect(() => board.placeShip(ship, 2, 8, "vertical")).toThrow(RangeError);
 });
 
+     test("receive attack functionality", () => {
+
+        expect(board.receiveAttack(3,2)).toBeTruthy();
+        expect(board.receiveAttack(5,7)).toBeFalsy();
+        expect(board.grid[2][3].hits).toBe(1);
+        expect(board.grid[7][5]).toBe("miss");
+
+        
+
+     })
+
+
     
 
 
 })
+
+
 
 
