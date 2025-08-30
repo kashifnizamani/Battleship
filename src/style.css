@@ -1,8 +1,44 @@
-*{
 
-    background-color: blue;
-}
 
 h1{
-    color: white;
+    place-self: center;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+
+.human-board{
+
+    display: grid;
+    width: 400px;
+    margin: 20px;
+    place-content: center;
+   
+    border: 1px solid black;
+    grid-template-columns: repeat(10, 40px);
+
+
+}
+
+.bot-board{
+     display: grid;
+    width: 400px;
+    margin: 20px;
+    place-content: center;
+   
+    border: 1px solid black;
+    grid-template-columns: repeat(10, 40px);
+}
+
+
+.cell{
+  
+   width: 40px;
+   height: 40px;
+ 
+
 }
