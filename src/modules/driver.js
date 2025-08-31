@@ -33,6 +33,10 @@ export function playGame() {
     if (e.target.classList.contains("cell")) {
       const row = e.target.getAttribute("row");
       const col = e.target.getAttribute("column");
+     
+      if(bot.board.grid[row][col] === "miss" || bot.board.grid[row][col] === "hit"){
+        return;
+      }
 
       const value = human.attack(bot.board, col, row);
       if (value === true) {
