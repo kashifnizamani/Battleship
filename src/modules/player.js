@@ -19,6 +19,10 @@ export class Player {
     const x = Math.floor(Math.random() * enemyBoard.cols);
     const y = Math.floor(Math.random() * enemyBoard.rows);
 
-    return this.attack(enemyBoard, x, y);
+    
+
+     const value = this.attack(enemyBoard, x, y);
+     
+     return value;
   }
 }

@@ -3,6 +3,7 @@ const humanBoard = document.querySelector(".human-board");
 const botBoard = document.querySelector(".bot-board");
 
 
+
 export function DOMboard(board, type){
 
       for (let i = 0; i < board.rows; i++) {
@@ -25,5 +26,8 @@ export function DOMboard(board, type){
     }
 
 
-
 }
+
+
+
+

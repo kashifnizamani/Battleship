@@ -64,7 +64,10 @@ export class Gameboard {
   receiveAttack(x, y){
 
      const target = this.grid[y][x];
-  if (target) {
+     if(target === "miss"){
+      return;
+     }
+  else if (target) {
     target.hit();  
     return true;   
   } else {
