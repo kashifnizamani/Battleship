@@ -28,6 +28,30 @@ export function DOMboard(board, type){
 
 }
 
+export function renderHumanBoard(board){
+
+  for(let i = 0; i < board.rows; i++){
+    for(let j = 0; j < board.cols; j++){
+       const cell = humanBoard.querySelector(`[row="${i}"][column="${j}"]`);
+      if(board.grid[i][j] === null){
+        continue;
+    }
+    else if(board.grid[i][j] === "miss"){
+      cell.style.backgroundColor = "black";
+    }
+ 
+    else if(board.grid[i][j] === "hit"){
+       cell.style.backgroundColor = "red";
+
+    }
+       else if( typeof board.grid[i][j] === 'object'){
+
+      cell.style.backgroundColor = "green";
 
 
+    }
+  }
+
+}
+}
 

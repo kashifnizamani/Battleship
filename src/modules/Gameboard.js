@@ -67,10 +67,11 @@ export class Gameboard {
      if(target === "miss"){
       return;
      }
-  else if (target) {
-    target.hit();  
+  else if (typeof target === 'object' && target !== null) {
+    target.hit(); 
+    this.grid[y][x] = "hit"; 
     return true;   
-  } else {
+  } else if(target === null){
     this.grid[y][x] = "miss"; 
     return false;
   }
