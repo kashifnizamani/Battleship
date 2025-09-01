@@ -4,6 +4,10 @@ import { Ship } from "./Ship";
 
 const humanBoard = document.querySelector(".human-board");
 const botBoard = document.querySelector(".bot-board");
+const dialog = document.querySelector(".gameOver");
+const dialog_header = document.querySelector(".result")
+const restart = document.querySelector(".restart")
+
 
 export function playGame() {
   const human = new Player("human");
@@ -39,15 +43,43 @@ export function playGame() {
       }
 
       const value = human.attack(bot.board, col, row);
+      
       if (value === true) {
         e.target.style.backgroundColor = "red";
       } else {
         e.target.style.backgroundColor = "black";
       }
+
+      const result =  checkGameOver(bot);
+      if(result){
+
+        dialog_header.textContent = "$"
+
+      }
+
       setTimeout(() => {
         bot.randomAttack(human.board);
         renderHumanBoard(human.board);
+        checkGameOver(human)
+
       }, 100);
     }
   });
+}
+
+
+function checkGameOver(player){
+
+      if(player.board.allSunk()){
+        if(player.type === "human"){
+          dialog_header.textContent = "Game Over!!! Bot Won";
+          dialog.showModal();
+        }
+        else{
+          dialog_header.textContent = "Game Over!!! You Won";
+          dialog.showModal();
+          
+        }
+      }
+
 }
