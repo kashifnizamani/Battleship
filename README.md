@@ -1,2 +1,2 @@
-# Template
-    template repository for initial project setup.
+# Battleship
+    simple implementation of battleship game to practice more TDD
