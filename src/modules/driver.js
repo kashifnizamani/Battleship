@@ -6,27 +6,33 @@ const humanBoard = document.querySelector(".human-board");
 const botBoard = document.querySelector(".bot-board");
 const dialog = document.querySelector(".gameOver");
 const dialog_header = document.querySelector(".result")
-const restart = document.querySelector(".restart")
 
 
-export function playGame() {
-  const human = new Player("human");
-  const bot = new Player("bot");
+
+export function playGame(human, bot) {
+
+
+
+
 
   console.log(humanBoard);
 
-  human.board.placeShip(new Ship(5), 0, 0, "horizontal"); 
-  human.board.placeShip(new Ship(4), 2, 2, "vertical"); 
-  human.board.placeShip(new Ship(3), 5, 5, "horizontal"); 
-  human.board.placeShip(new Ship(3), 7, 1, "vertical"); 
-  human.board.placeShip(new Ship(2), 9, 7, "vertical"); 
+  placeRandomLayout(human.board);
+  placeRandomLayout(bot.board);
 
-  // Computer ships
-  bot.board.placeShip(new Ship(5), 4, 9, "horizontal");
-  bot.board.placeShip(new Ship(4), 0, 5, "vertical");
-  bot.board.placeShip(new Ship(3), 6, 2, "vertical");
-  bot.board.placeShip(new Ship(3), 3, 0, "horizontal");
-  bot.board.placeShip(new Ship(2), 8, 3, "vertical");
+
+  // human.board.placeShip(new Ship(5), 0, 0, "horizontal"); 
+  // human.board.placeShip(new Ship(4), 2, 2, "vertical"); 
+  // human.board.placeShip(new Ship(3), 5, 5, "horizontal"); 
+  // human.board.placeShip(new Ship(3), 7, 1, "vertical"); 
+  // human.board.placeShip(new Ship(2), 9, 7, "vertical"); 
+
+  // // Computer ships
+  // bot.board.placeShip(new Ship(5), 4, 9, "horizontal");
+  // bot.board.placeShip(new Ship(4), 0, 5, "vertical");
+  // bot.board.placeShip(new Ship(3), 6, 2, "vertical");
+  // bot.board.placeShip(new Ship(3), 3, 0, "horizontal");
+  // bot.board.placeShip(new Ship(2), 8, 3, "vertical");
 
   DOMboard(human.board, human.type);
   renderHumanBoard(human.board);
@@ -68,18 +74,43 @@ export function playGame() {
 }
 
 
-function checkGameOver(player){
 
-      if(player.board.allSunk()){
-        if(player.type === "human"){
-          dialog_header.textContent = "Game Over!!! Bot Won";
-          dialog.showModal();
-        }
-        else{
-          dialog_header.textContent = "Game Over!!! You Won";
-          dialog.showModal();
-          
-        }
-      }
+function checkGameOver(player) {
+  if (player.board.allSunk()) {
+    if (player.type === "human") {
+      dialog_header.textContent = "Game Over!!! Bot Won";
+    } else {
+      dialog_header.textContent = "Game Over!!! You Won";
+    }
+    dialog.showModal();
+  }
+}
 
+function placeRandomLayout(board) {
+  const layouts = [
+    (b) => {
+      b.placeShip(new Ship(5), 0, 0, "horizontal");
+      b.placeShip(new Ship(4), 2, 2, "vertical");
+      b.placeShip(new Ship(3), 5, 5, "horizontal");
+      b.placeShip(new Ship(3), 7, 1, "vertical");
+      b.placeShip(new Ship(2), 9, 7, "vertical");
+    },
+    (b) => {
+      b.placeShip(new Ship(5), 1, 4, "vertical");
+      b.placeShip(new Ship(4), 6, 0, "horizontal");
+      b.placeShip(new Ship(3), 3, 7, "vertical");
+      b.placeShip(new Ship(3), 5, 5, "horizontal");
+      b.placeShip(new Ship(2), 0, 9, "horizontal");
+    },
+    (b) => {
+      b.placeShip(new Ship(5), 4, 1, "horizontal");
+      b.placeShip(new Ship(4), 0, 0, "vertical");
+      b.placeShip(new Ship(3), 3, 2, "horizontal");
+      b.placeShip(new Ship(3), 2, 6, "vertical");
+      b.placeShip(new Ship(2), 7, 5, "horizontal");
+    },
+  ];
+
+  const randomIndex = Math.floor(Math.random() * layouts.length);
+  layouts[randomIndex](board);
 }
